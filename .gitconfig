@@ -1,0 +1,20 @@
+[user]
+	name = Basil G
+	email = sti_jans@yahoo.com
+[core]
+	autocrlf = input
+	safecrlf = true
+	editor = vim
+[alias]
+  	co = checkout
+#  	ci = commit
+  	s = status -s
+  	bv = branch -vv -a
+	sh = show --name-status
+  	hist = log --all --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+#  	type = cat-file -t
+#  	dump = cat-file -p
+[color]
+	ui = true
+[push]
+	default = simple
