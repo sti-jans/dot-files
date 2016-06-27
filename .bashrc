@@ -21,7 +21,8 @@ export HISTSIZE HISTCONTROL PROMPT_COMMAND
 shopt -s histappend
 
 # Add Golang to PATH
-export PATH=$PATH:/usr/local/go/bin
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
 
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
