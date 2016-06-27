@@ -24,6 +24,8 @@ shopt -s histappend
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 
+# export GOPATH=$HOME/golang:$HOME/Downloads/goeg
+
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
 source /home/basil/.rvm/scripts/rvm
