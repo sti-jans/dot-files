@@ -26,9 +26,12 @@ export PATH=$PATH:$GOROOT/bin
 
 # export GOPATH=$HOME/golang:$HOME/Downloads/goeg
 
+# Add Rebar to PATH                                                                                                     
+export PATH=$PATH:$HOME/.cache/rebar3/bin
+
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
-source /home/basil/.rvm/scripts/rvm
+source $HOME/.rvm/scripts/rvm
 
 # enable bash completion in interactive shells
 if ! shopt -oq posix; then
