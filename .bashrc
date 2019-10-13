@@ -26,6 +26,7 @@ function prompt {
   export PS1="\n$GREENBOLD\D{} $PURPLE@ $BLUEBOLD\w $CYAN$(parse_git_branch_and_add_brackets)\n $RESETCOLOR → "
   export PS2=" | → $RESETCOLOR"
 
+  # use \$(parse_git_branch_and_add_brackets) for macOS (backslash at the beginning)
   #export PS1="$GREENBOLD\u@\h$RESETCOLOR:$BLUEBOLD\w$CYAN$(parse_git_branch_and_add_brackets)$RESETCOLOR\$ "
   # or
   #export PS1="${debian_chroot:+($debian_chroot)}$GREENBOLD[\u@\h$WHITEBOLD \W$GREENBOLD]\$$RESETCOLOR "
