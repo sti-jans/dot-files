@@ -67,3 +67,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
+pstrace() {
+  ps auxw | fgrep -i "$1" | fgrep -v "fgrep" | awk '{print"-p " $2}' | xargs sudo strace -v -ttt -f ${*:2} 2>&1
+}

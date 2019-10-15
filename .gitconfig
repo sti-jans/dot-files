@@ -1,22 +1,24 @@
 [user]
-	name = Basil G
-	email = sti_jans@yahoo.com
+    name = Basil G
+    email = sti_jans@yahoo.com
 [core]
-	autocrlf = input
-	safecrlf = true
-	editor = vim
+    autocrlf = input
+    safecrlf = true
+    editor = vim
 [alias]
-  	co = checkout
-#  	ci = commit
-  	s = status -s
-  	bv = branch -vv -a
-	sh = show --name-status
-  	hist = log --all --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-#  	type = cat-file -t
-#  	dump = cat-file -p
+    co = checkout
+    ci = commit
+    s = status -s
+    bv = branch -vv -a
+    sh = show --name-status
+    hist = log --all --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+#   type = cat-file -t
+#   dump = cat-file -p
+    conflicts = !git ls-files --unmerged | cut -f2 | sort -u | xargs grep -El '<<<<<<<|=======|>>>>>>>'
+    unmerged = !git ls-files --unmerged | cut -f2 | sort -u
 [color]
-	ui = true
+    ui = true
 [push]
-	default = simple
+    default = simple
 [credential]
-        helper = cache
+    helper = cache
