@@ -5,6 +5,7 @@
     autocrlf = input
     safecrlf = true
     editor = vim
+    excludesFile = ~/.gitignore
 [alias]
     co = checkout
     ci = commit
@@ -12,8 +13,8 @@
     bv = branch -vv -a
     sh = show --name-status
     hist = log --all --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-#   type = cat-file -t
-#   dump = cat-file -p
+    type = cat-file -t
+    dump = cat-file -p
     conflicts = !git ls-files --unmerged | cut -f2 | sort -u | xargs grep -El '<<<<<<<|=======|>>>>>>>'
     unmerged = !git ls-files --unmerged | cut -f2 | sort -u
 [color]
@@ -22,3 +23,7 @@
     default = simple
 [credential]
     helper = cache
+#[url "git@gitlab.ru:"]
+#    insteadOf = https://gitlab.ru/
+[pull]
+    rebase = true
