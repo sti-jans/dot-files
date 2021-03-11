@@ -1,0 +1,159 @@
+linters-settings:
+  depguard:
+    list-type: blacklist
+    packages-with-error-message:
+      - github.com/sirupsen/logrus: "logging is allowed only by logutils.Log"
+      - github.com/alecthomas/assert: "assert only allowed for testify library"
+  dupl:
+    threshold: 100
+  funlen:
+    lines: 100
+    statements: 50
+  gci:
+    local-prefixes: gitlab.corp.mail.ru
+  goconst:
+    min-len: 3
+    min-occurrences: 4
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+    disabled-checks:
+      - dupImport # https://github.com/go-critic/go-critic/issues/845
+      - hugeParam # Config heavy, but we want to copy it on call
+      - ifElseChain
+      - octalLiteral
+      - whyNoLint
+      - wrapperFunc
+  godox:
+    # report any comments starting with keywords, this is useful for TODO or FIXME comments that
+    # might be left in the code accidentally and should be resolved before merging
+    keywords: # default keywords are TODO, BUG, and FIXME, these can be overwritten by this setting
+      - NOTE
+      - BUG
+      - OPTIMIZE # marks code that should be optimized before merging
+      - HACK # marks hack-arounds that should be removed before merging
+  gocyclo:
+    min-complexity: 15
+  goimports:
+    local-prefixes: gitlab.semrush.net
+  golint:
+    min-confidence: 0
+  gomnd:
+    settings:
+      mnd:
+        # don't include the "operation" and "assign"
+        checks: argument,case,condition,return
+  govet:
+    check-shadowing: true
+    settings:
+      printf:
+        funcs:
+          - Debugf
+          - Infof
+          - Warnf
+          - Errorf
+          - DPanicf
+          - Panicf
+          - Fatalf
+  maligned:
+    # print struct with more effective memory layout or not, false by default
+    suggest-new: true
+  prealloc:
+    # XXX: we don't recommend using this linter before doing performance profiling.
+    # For most programs usage of prealloc will be a premature optimization.
+
+    # Report preallocation suggestions only on simple loops that have no returns/breaks/continues/gotos in them.
+    # True by default.
+    simple: true
+    range-loops: true # Report preallocation suggestions on range loops, true by default
+    for-loops: false # Report preallocation suggestions on for loops, false by default
+  lll:
+    line-length: 140
+  misspell:
+    locale: US
+  nolintlint:
+    allow-leading-space: true # don't require machine-readable nolint directives (i.e. with no leading space)
+    allow-unused: false # report any unused nolint directives
+    require-explanation: false # don't require an explanation for nolint directives
+    require-specific: false # don't require nolint directives to be specific about which linter is being skipped
+
+linters:
+  # please, do not use `enable-all`: it's deprecated and will be removed soon.
+  # inverted configuration with `enable-all` and `disable` is not scalable during updates of golangci-lint
+  disable-all: true
+  enable:
+    - bodyclose
+    - deadcode
+    - depguard
+    - dogsled
+    - dupl
+    - errcheck
+    - exhaustive
+    - funlen
+    - gochecknoinits
+    - goconst
+    - gocritic
+    - gocyclo
+    - gofmt
+    - goimports
+    - gci
+    - golint
+    - gomnd
+    - goprintffuncname
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    - interfacer
+    - lll
+    - misspell
+    - nakedret
+    - noctx
+    - nolintlint
+    - rowserrcheck
+    - scopelint
+    - staticcheck
+    - structcheck
+    - stylecheck
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - varcheck
+    - whitespace
+    - godox
+
+  # don't enable:
+  # - asciicheck
+  # - gochecknoglobals
+  # - gocognit
+  # - godot
+  # - goerr113
+  # - maligned
+  # - nestif
+  # - prealloc
+  # - testpackage
+  # - wsl
+
+issues:
+  # Excluding configuration per-path, per-linter, per-text and per-source
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gomnd
+
+    # https://github.com/go-critic/go-critic/issues/926
+    - linters:
+        - gocritic
+      text: "unnecessaryDefer:"
+
+
+# https://github.com/golangci/golangci/wiki/Configuration
+#service:
+#  golangci-lint-version: 1.32.x # use the fixed version to not introduce new linters unexpectedly
+#  prepare:
+#    - make proc
